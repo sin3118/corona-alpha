@@ -33,6 +33,14 @@
 - `signal-postmortem`: 매매가 왜 맞았는지 또는 틀렸는지 복기한다.
 - `weekly-performance-digest`: 주간 승률, 기대값, R-multiple.
 
+## 매일 아침 보고 (VOO, QQQ, UNH)
+1. `python3 scripts/daily_us_review.py` 를 실행한다 (약 1분). 결과는 `reports/daily/<날짜>/data.md` 에 저장된다.
+   - 내용: 시장 지표, 업종 ETF, 시장 점검 판정, 관심 종목 숫자와 신호.
+2. WebSearch 로 전날 미국 증시 마감 기사와 VOO, QQQ, UNH 관련 뉴스를 찾는다. 출처 링크를 붙인다.
+3. 보고서는 한국어로 쓰고 순서를 지킨다: 한 줄 요약 → 전날 시황 → 시장 점검 판정 → 종목별 검토(상태 OK/WARN/REVIEW, 바뀐 점, 지켜볼 가격) → 오늘 확인할 것.
+4. 매수·매도를 지시하지 않는다. 전날과 비교해 판정이나 신호가 바뀐 점을 가장 먼저 쓴다.
+5. 관심 종목이나 지지 가격을 바꾸려면 스크립트의 `--watch` 옵션과 `LEVELS` 를 고친다.
+
 ## 어디서 시작할지 모를 때
 ```bash
 python3 .claude/skills/trading-skills-navigator/scripts/recommend.py \
@@ -40,5 +48,5 @@ python3 .claude/skills/trading-skills-navigator/scripts/recommend.py \
 ```
 
 ## 네트워크
-시장 점검에는 `tradermonty.github.io` 와 `raw.githubusercontent.com` 접근이 필요하다
+시장 점검에는 `tradermonty.github.io` 와 `raw.githubusercontent.com`, 시세에는 `query1.finance.yahoo.com` 접근이 필요하다
 (클라우드 환경 "corona-alpha" 에서 허용됨). FMP, FINVIZ, Alpaca를 쓰는 skill은 API 키가 필요해서 설치하지 않았다.
